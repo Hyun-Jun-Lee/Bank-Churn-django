@@ -21,13 +21,14 @@ def predict(request):
     if request.POST.get('action') == 'post':
 
         # 데이터 입력값 받기
+        username = request.POST.get('username')
         Total_Trans_Amt = int(request.POST.get('Total_trant_Amt'))
         Education_Level = int(request.POST.get('Edu_level'))
-        Income_Category = request.POST.get('Income')
+        Income_Category = int(request.POST.get('Income'))
         Total_Relationship_Count = int(request.POST.get('Total_relationship_cnt')) 
         Months_on_book = int(request.POST.get('Month_on_book')) 
         Customer_Age = int(request.POST.get('Customer_age')) 
-        Contacts_Count_12_mon = int(request.POST.get('Contact_cnt_12')) 
+        Contacts_Count_12_mon = int(request.POST.get('Contact_cnt_12'))
         Dependent_count = int(request.POST.get('Dependent_count')) 
         Gender = int(request.POST.get('gender')) 
 
@@ -40,12 +41,12 @@ def predict(request):
 
         classification = result[0]
 
-        PredResults.objects.create(Total_Trans_Amt=Total_Trans_Amt, Education_Level=Education_Level, Income_Category=Income_Category,
+        PredResults.objects.create(username=username,Total_Trans_Amt=Total_Trans_Amt, Education_Level=Education_Level, Income_Category=Income_Category,
                                    Total_Relationship_Count=Total_Relationship_Count, Months_on_book=Months_on_book,
                                    Customer_Age=Customer_Age, Contacts_Count_12_mon=Contacts_Count_12_mon, 
                                    Dependent_count=Dependent_count, Gender=Gender, result=classification)
 
-        return JsonResponse({'Total_Trans_Amt': Total_Trans_Amt, 'Education_Level': Education_Level, 'Income_Category': Income_Category,
+        return JsonResponse({'username':username,'Total_Trans_Amt': Total_Trans_Amt, 'Education_Level': Education_Level, 'Income_Category': Income_Category,
                                    'Total_Relationship_Count': Total_Relationship_Count, 'Months_on_book':Months_on_book,
                                    'Customer_Age': Customer_Age, 'Contacts_Count_12_mon': Contacts_Count_12_mon, 
                                    'Dependent_count': Dependent_count, 'Gender': Gender, 'result':classification})
