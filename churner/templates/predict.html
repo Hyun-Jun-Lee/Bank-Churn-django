@@ -191,16 +191,23 @@ document.forms["post-form"].reset();양식의 모든 요소 값을 재설정
                 Contact_cnt_12:$('#Contact_cnt_12').val(),
                 Dependent_count:$('#Dependent_count').val(),
                 gender:$('#gender').val(),
+                income:$('#Income').val(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
                 action: 'post'
             },
             success:function(json) {
                 document.forms["post-form"].reset();
                 document.getElementById("prediction").innerHTML = json['result']
-                document.getElementById("sl").innerHTML = json['sepal_length']
-                document.getElementById("sw").innerHTML = json['sepal_width']
-                document.getElementById("pl").innerHTML = json['petal_length']
-                document.getElementById("pw").innerHTML = json['petal_width']
+                document.getElementById("name").innerHTML = json['username']
+                document.getElementById("age").innerHTML = json['Customer_age']
+                document.getElementById("sex").innerHTML = json['gender']
+                document.getElementById("contact").innerHTML = json['Contact_cnt_12']
+                document.getElementById("total_rel").innerHTML = json['Total_relationship_cnt']
+                document.getElementById("dependent").innerHTML = json['Dependent_count']
+                document.getElementById("edu").innerHTML = json['Edu_level']
+                document.getElementById("incom").innerHTML = json['income']
+                document.getElementById("trant").innerHTML = json['Total_trant_Amt']
+                document.getElementById("book").innerHTML = json['Month_on_book']
             },
             error : function(xhr,errmsg,err) {
 
