@@ -13,10 +13,16 @@
             </div>
             <div class="modal-body">
                 <h5>예측값 입력:</h5>
-                <div>Sepal 길이: <span id="sl"></span></div>
-                <div>Sepal 넓이: <span id="sw"></span></div>
-                <div>Petal 길이: <span id="pl"></span></div>
-                <div>Petal 넓이: <span id="pw"></span></div>
+                <div>이름: <span id="name"></span></div>
+                <div>나이: <span id="age"></span></div>
+                <div>성별: <span id="sex"></span></div>
+                <div>1년간 방문 횟수: <span id="contact"></span></div>
+                <div>보유 상품 수: <span id="total_rel"></span></div>
+                <div>부양가족수: <span id="dependent"></span></div>
+                <div>최종학력: <span id="edu"></span></div>
+                <div>소득범위: <span id="incom"></span></div>
+                <div>총 거래 금액: <span id="trant"></span></div>
+                <div>거래 기간(Month): <span id="book"></span></div>
                 <h5 class="pt-3">예측 분류:</h5>
                 <div id="prediction"></div>
             </div>
@@ -58,7 +64,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Total_relationship_cnt">보유한 상품 수</label>
+                    <label for="Total_relationship_cnt">보유 상품 수</label>
                         <select id="Total_relationship_cnt">
                             <option value='1'>1개</option>
                             <option value='2'>2개</option>
@@ -90,7 +96,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Edu_level">학력(졸업)</label>
+                    <label for="Edu_level">최종학력</label>
                     <select id="Edu_level">
                         <option value='0'>College</option>
                         <option value='1'>Doctorate</option>
@@ -102,7 +108,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Income">연봉</label> 
+                    <label for="Income">소득 범위</label> 
                     <select id="Income">
                         <option value='0'>Less than $40K</option>
                         <option value='1'>$40K - $60K</option>
