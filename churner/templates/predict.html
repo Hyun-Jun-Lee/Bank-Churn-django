@@ -1,0 +1,207 @@
+{% extends 'layout.html' %}
+{% block content %}
+    
+    <!-- 모달 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Prediction Results</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>예측값 입력:</h5>
+                <div>Sepal 길이: <span id="sl"></span></div>
+                <div>Sepal 넓이: <span id="sw"></span></div>
+                <div>Petal 길이: <span id="pl"></span></div>
+                <div>Petal 넓이: <span id="pw"></span></div>
+                <h5 class="pt-3">예측 분류:</h5>
+                <div id="prediction"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <a class="btn btn-primary" href="/results" role="button">데이터보기</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container pt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+        <h1>고객 이탈 예측</h1>
+            <form action="" id="post-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">이름</label>
+                    <input id="username" style="margin-bottom:10px" class="form-control" type="text" placeholder="Enter fullname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Customer_age">나이(만)</label>
+                    <input id="Customer_age" style="margin-bottom:10px" step="1" class="form-control" type="number" placeholder="Enter age" required>
+                </div>
+
+                <div class="form-group">
+                      <label for="Contact_cnt_12">1년간 방문 횟수</label>
+                      <select id="Contact_cnt_12" >
+                        <option value='0'>0회</option>
+                        <option value='1'>1회</option>
+                        <option value='2'>2회</option>
+                        <option value='3'>3회</option>
+                        <option value='4'>4회</option>
+                        <option value='5'>5회 이상</option>
+                      </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Total_relationship_cnt">보유한 상품 수</label>
+                        <select id="Total_relationship_cnt">
+                            <option value='1'>1개</option>
+                            <option value='2'>2개</option>
+                            <option value='3'>3개</option>
+                            <option value='4'>4개</option>
+                            <option value='5'>5개</option>
+                            <option value='6'>6개 이상</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">성별</label>
+                    <select id="gender">
+                        <option value='0'>Male</option>
+                        <option value='1'>Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Dependent_count">부양가족수</label>
+                    <select id="Dependent_count">
+                        <option value='0'>0</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5(이상)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Edu_level">학력(졸업)</label>
+                    <select id="Edu_level">
+                        <option value='0'>College</option>
+                        <option value='1'>Doctorate</option>
+                        <option value='2'>Graduate</option>
+                        <option value='3'>High School</option>
+                        <option value='4'>Post-Graduate</option>
+                        <option value='5'>Uneducated</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Income">연봉</label> 
+                    <select id="Income">
+                        <option value='0'>Less than $40K</option>
+                        <option value='1'>$40K - $60K</option>
+                        <option value='2'>$60K - $80K</option>
+                        <option value='3'>$80K - $120K</option>
+                        <option value='4'>$120K +</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Total_trant_Amt">총 거래 금액</label>
+                    <input id="Total_trant_Amt" style="margin-bottom:10px" class="form-control" type="number" placeholder="0~$180K" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Month_on_book">거래 기간(month)</label>
+                    <input id="Month_on_book" style="margin-bottom:10px" class="form-control" type="number" required>
+                </div>
+
+                <button type="submit" value="Submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">전송</button>
+            </form>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://m.media-amazon.com/images/I/51TO6RZdMGS._SL160_.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">공부도 하고 돈도 벌고</h5>
+                <p class="card-text">붓꽃 구매시 세부적인 정보로 구별하세요. 붓꽃 구별 전문가가 되어 재판매하세요!</p>
+                <a href="https://amzn.to/3kltRSR" class="btn btn-primary">붓꽃 실재 구매하기</a>
+            </div>
+        </div>
+
+    </div>
+    </div>
+{% comment %} 
+## id값 가져오기
+<input type="text" id="sepal_length" value"ABC">
+
+자바스크립트 : getElementById("sepal_length")
+
+제이쿼리 : $('#sepal_length').val() 
+
+## 폼 데이타를 자바스크립트에 -submit 누를때 - 보내주기
+
+$(document).on("submit",this.id, function (e) {
+    // 할일
+})
+## ajax ##비동기 - 웹에서 화면 갱신하지 않고 데이타를 가져오는 방식
+## html 에서 입력 상자 값을 어떻게 호출합니까?
+$.ajax(
+{}, => 기본 사용법. 요청 url, 속성
+success:function(json) {}, => Ajax success data 받기
+error : function(xhr,errmsg,err) {}, => 에러처리
+
+)
+
+##소스코드 작동 과정
+document.getElementById("prediction").innerHTML = json['result']
+1.로딩 이후 id 가 prediction인 값을 찾는다
+2. 내부의 HTML 코드를 json['result']로 바꾼다
+
+##
+e.preventDefault(); 고유동작 중단
+document.forms["post-form"].reset();양식의 모든 요소 값을 재설정
+
+{% endcomment %}
+<script>
+    $(document).on('submit', '#post-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "churner:predict" %}',
+            data:{
+                username:$('#username').val(),
+                Total_trant_Amt:$('#Total_trant_Amt').val(),
+                Edu_level:$('#Edu_level').val(),
+                Total_relationship_cnt:$('#Total_relationship_cnt').val(),
+                Month_on_book:$('#Month_on_book').val(),
+                Customer_age:$('#Customer_age').val(),
+                Contact_cnt_12:$('#Contact_cnt_12').val(),
+                Dependent_count:$('#Dependent_count').val(),
+                gender:$('#gender').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success:function(json) {
+                document.forms["post-form"].reset();
+                document.getElementById("prediction").innerHTML = json['result']
+                document.getElementById("sl").innerHTML = json['sepal_length']
+                document.getElementById("sw").innerHTML = json['sepal_width']
+                document.getElementById("pl").innerHTML = json['petal_length']
+                document.getElementById("pw").innerHTML = json['petal_width']
+            },
+            error : function(xhr,errmsg,err) {
+
+            }
+        });
+    })
+</script>
+
+
+{% endblock content %}
