@@ -1,4 +1,83 @@
 {% extends 'layout.html' %}
-{% block content %}
-    test
-{% endblock %}
+{% block content %}    
+    <div class="container pt-5">
+        <div class="row">
+
+        <h1>예측 결과</h1>
+
+            <table class="table">
+                <thead >
+                <tr align="center">
+                <th scope="col">이름</th>
+                <th scope="col">총 거래 금액</th>
+                <th scope="col">최종학력</th>
+                <th scope="col">소득 범위</th>
+                <th scope="col">보유 상품 수</th>
+                <th scope="col">거래 기간(Month)</th>
+                <th scope="col" width="70">나이</th>
+                <th scope="col" >1년간 방문 횟수</th>
+                <th scope="col">부양가족 수</th>
+                <th scope="col">성별</th>
+                <th scope="col">예측</th>
+                </tr>
+                </thead>
+                <tbody align="center">
+                {% for data in dataset %}
+                    <tr>
+                    <th scope="row" width="100">{{ data.username }}</th>
+                    <td width="120">{{ data.Total_Trans_Amt }}</td>
+                    <td>
+                        {% if data.Education_Level == 0 %}
+                            <p>Uneducated</p>
+                        {% elif data.Education_Level == 1%}
+                            <p>High School</p>
+                        {% elif data.Education_Level == 2%}
+                            <p>College</p>
+                        {% elif data.Education_Level == 3%}
+                            <p>Graduate</p>
+                        {% elif data.Education_Level == 4%}
+                            <p>Post-Graduate</p>
+                        {% elif data.Education_Level == 5%}
+                            <p>Doctorate</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if data.Income_Category == 0 %}
+                            <p>Less than $40K</p>
+                        {% elif data.Income_Category == 1%}
+                            <p>$40K - $60K</p>
+                        {% elif data.Income_Category == 2%}
+                            <p>$60K - $80K</p>
+                        {% elif data.Income_Category == 3%}
+                            <p>$80K - $120K</p>
+                        {% elif data.Income_Category == 4%}
+                            <p>$120K +</p>
+                        {% endif %}
+                    </td>
+                    <td>{{ data.Total_Relationship_Count }}</td>
+                    <td>{{ data.Months_on_book }}</td>
+                    <td>{{ data.Customer_Age  }}</td>
+                    <td>{{ data.Contacts_Count_12_mon  }}</td>
+                    <td>{{ data.Dependent_count }}</td>
+                    <td width="100">
+                        {% if data.Gender == 1 %}
+                            <p>여성</p>
+                        {% else %}
+                            <p>남성</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if data.result == 1 %}
+                            <p>Churner</p>
+                        {% else %}
+                            <p>Remain</p>
+                        {% endif %}
+                    </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
