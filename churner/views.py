@@ -17,6 +17,7 @@ from sklearn.svm import SVC
 def index(request):
     return render(request, 'predict.html')
 
+
 def predict(request):
     if request.POST.get('action') == 'post':
 
