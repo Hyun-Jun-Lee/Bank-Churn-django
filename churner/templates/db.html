@@ -1,32 +1,30 @@
 {% extends 'layout.html' %}
 {% block content %}    
-    <div class="container pt-5">
+    <div class="container pt-5" >
         <div class="row">
 
-        <h1>예측 결과</h1>
-
-            <table class="table">
-                <thead >
+            <table class="table table-bordered" style="background-color:lightgray;">
+                <thead style="background-color:lightblue;">
                 <tr align="center">
-                <th scope="col">이름</th>
-                <th scope="col">총 거래 금액</th>
-                <th scope="col">최종학력</th>
-                <th scope="col">소득 범위</th>
-                <th scope="col">보유 상품 수</th>
-                <th scope="col">거래 기간(Month)</th>
-                <th scope="col" width="70">나이</th>
-                <th scope="col" >1년간 방문 횟수</th>
-                <th scope="col">부양가족 수</th>
-                <th scope="col">성별</th>
-                <th scope="col">예측</th>
+                <th scope="col" style="vertical-align:middle">이름</th>
+                <th scope="col" style="vertical-align:middle">총 거래 금액</th>
+                <th scope="col" style="vertical-align:middle">최종학력</th>
+                <th scope="col" style="vertical-align:middle">소득 범위</th>
+                <th scope="col" style="vertical-align:middle">보유 상품 수</th>
+                <th scope="col" style="vertical-align:middle">거래 기간(Month)</th>
+                <th scope="col" style="vertical-align:middle" width="70">나이</th>
+                <th scope="col" style="vertical-align:middle" >1년간 방문 횟수</th>
+                <th scope="col" style="vertical-align:middle">부양가족 수</th>
+                <th scope="col" style="vertical-align:middle">성별</th>
+                <th scope="col" style="vertical-align:middle">결과</th>
                 </tr>
                 </thead>
                 <tbody align="center">
                 {% for data in dataset %}
                     <tr>
-                    <th scope="row" width="100">{{ data.username }}</th>
-                    <td width="120">{{ data.Total_Trans_Amt }}</td>
-                    <td>
+                    <th style="vertical-align:middle" scope="row" width="100">{{ data.username }}</th>
+                    <td style="vertical-align:middle" width="120">{{ data.Total_Trans_Amt }}</td>
+                    <td style="vertical-align:middle">
                         {% if data.Education_Level == 0 %}
                             <p>Uneducated</p>
                         {% elif data.Education_Level == 1%}
@@ -41,7 +39,7 @@
                             <p>Doctorate</p>
                         {% endif %}
                     </td>
-                    <td>
+                    <td style="vertical-align:middle">
                         {% if data.Income_Category == 0 %}
                             <p>Less than $40K</p>
                         {% elif data.Income_Category == 1%}
@@ -54,19 +52,19 @@
                             <p>$120K +</p>
                         {% endif %}
                     </td>
-                    <td>{{ data.Total_Relationship_Count }}</td>
-                    <td>{{ data.Months_on_book }}</td>
-                    <td>{{ data.Customer_Age  }}</td>
-                    <td>{{ data.Contacts_Count_12_mon  }}</td>
-                    <td>{{ data.Dependent_count }}</td>
-                    <td width="100">
+                    <td style="vertical-align:middle">{{ data.Total_Relationship_Count }}</td>
+                    <td style="vertical-align:middle">{{ data.Months_on_book }}</td>
+                    <td style="vertical-align:middle">{{ data.Customer_Age  }}</td>
+                    <td style="vertical-align:middle">{{ data.Contacts_Count_12_mon  }}</td>
+                    <td style="vertical-align:middle">{{ data.Dependent_count }}</td>
+                    <td style="vertical-align:middle" width="100">
                         {% if data.Gender == 1 %}
                             <p>여성</p>
                         {% else %}
                             <p>남성</p>
                         {% endif %}
                     </td>
-                    <td>
+                    <td style="vertical-align:middle">
                         {% if data.result == 1 %}
                             <p>Churner</p>
                         {% else %}
