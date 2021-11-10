@@ -22,15 +22,15 @@ def predict(request):
 
         # 데이터 입력값 받기
         username = request.POST.get('username')
-        Total_Trans_Amt = int(request.POST.get('Total_trant_Amt'))
-        Education_Level = int(request.POST.get('Edu_level'))
-        Income_Category = int(request.POST.get('Income'))
-        Total_Relationship_Count = int(request.POST.get('Total_relationship_cnt')) 
-        Months_on_book = int(request.POST.get('Month_on_book')) 
-        Customer_Age = int(request.POST.get('Customer_age')) 
-        Contacts_Count_12_mon = int(request.POST.get('Contact_cnt_12'))
-        Dependent_count = int(request.POST.get('Dependent_count')) 
-        Gender = int(request.POST.get('gender')) 
+        Total_Trans_Amt = float(request.POST.get('Total_trant_Amt'))
+        Education_Level = float(request.POST.get('Edu_level'))
+        Income_Category = float(request.POST.get('Income'))
+        Total_Relationship_Count = float(request.POST.get('Total_relationship_cnt')) 
+        Months_on_book = float(request.POST.get('Month_on_book')) 
+        Customer_Age = float(request.POST.get('Customer_age')) 
+        Contacts_Count_12_mon = float(request.POST.get('Contact_cnt_12'))
+        Dependent_count = float(request.POST.get('Dependent_count')) 
+        Gender = float(request.POST.get('gender')) 
 
         # model 가져오기
         model = joblib.load('churner/lgbm_model_w.pkl')
@@ -39,7 +39,7 @@ def predict(request):
         result = model.predict([[Total_Trans_Amt, Education_Level, Income_Category, Total_Relationship_Count, 
                                  Months_on_book, Customer_Age, Contacts_Count_12_mon, Dependent_count, Gender]])
 
-        classification = result[0]
+        classification = result
 
         PredResults.objects.create(username=username,Total_Trans_Amt=Total_Trans_Amt, Education_Level=Education_Level, Income_Category=Income_Category,
                                    Total_Relationship_Count=Total_Relationship_Count, Months_on_book=Months_on_book,

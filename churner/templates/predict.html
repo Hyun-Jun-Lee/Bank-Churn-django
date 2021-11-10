@@ -12,19 +12,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5>예측값 입력:</h5>
-                <div>이름: <span id="name"></span></div>
-                <div>나이: <span id="age"></span></div>
-                <div>성별: <span id="sex"></span></div>
-                <div>1년간 방문 횟수: <span id="contact"></span></div>
-                <div>보유 상품 수: <span id="total_rel"></span></div>
-                <div>부양가족수: <span id="dependent"></span></div>
-                <div>최종학력: <span id="edu"></span></div>
-                <div>소득범위: <span id="incom"></span></div>
-                <div>총 거래 금액: <span id="trant"></span></div>
-                <div>거래 기간(Month): <span id="book"></span></div>
-                <h5 class="pt-3">예측 분류:</h5>
-                <div id="prediction"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -35,25 +22,30 @@
 </div>
 
 
-    <div class="container pt-5">
+
+    <div class="card pt-3">
     <div class="row justify-content-md-center">
         <div class="col-md-4" >
-        <h1 style="text-align:center">고객 이탈 예측</h1>
-            <form action="" id="post-form" style="text-align:center">
+        <h1 class="card-header" style="text-align:center; background-color:lightblue;">고객 이탈 예측</h1>
+            <form action="" id="post-form" style="text-align:center; background-color:lightgray;" class="card-body">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="username">이름</label>
-                    <input id="username" style="margin-bottom:10px; text-align:center;" class="form-control" type="text" placeholder="Enter fullname" required>
+                <div>
+                    <div class="form-group" align="center">
+                        <label for="username">이름</label>
+                        <input id="username" style="margin-bottom:10px; text-align:center; width:300px;" class="form-control" type="text" placeholder="Enter fullname" required>
+                    </div>
+
+                    <div class="form-group" align="center">
+                        <label for="Customer_age">나이</label>
+                        <input id="Customer_age" style="margin-bottom:10px; text-align:center; width:300px;" class="form-control"  placeholder="Enter age" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="Customer_age">나이(만)</label>
-                    <input id="Customer_age" style="margin-bottom:10px; text-align:center;" step="1" class="form-control" type="number" placeholder="Enter age" required>
-                </div>
-
-                <div class="form-group">
-                      <label for="Contact_cnt_12">1년간 방문 횟수</label>
-                      <select id="Contact_cnt_12" type="number">
+                <hr>
+                
+                <div class="form-group" >
+                      <label for="Contact_cnt_12">1년간 방문 횟수</label><br>
+                      <select id="Contact_cnt_12" style="text-align:center">
                         <option value='0'>0회</option>
                         <option value='1'>1회</option>
                         <option value='2'>2회</option>
@@ -64,8 +56,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Total_relationship_cnt">보유 상품 수</label>
-                        <select id="Total_relationship_cnt" type="number">
+                    <label for="Total_relationship_cnt">보유 상품 수</label><br>
+                        <select id="Total_relationship_cnt" style="text-align:center">
                             <option value='1'>1개</option>
                             <option value='2'>2개</option>
                             <option value='3'>3개</option>
@@ -74,18 +66,18 @@
                             <option value='6'>6개 이상</option>
                         </select>
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="gender">성별</label>
-                    <select id="gender" type="number">
+                    <label for="gender">성별</label><br>
+                    <select id="gender" style="text-align:center">
                         <option value='0'>Male</option>
                         <option value='1'>Female</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="Dependent_count">부양가족수</label>
-                    <select id="Dependent_count" type="number">
+                    <label for="Dependent_count">부양가족수</label><br>
+                    <select id="Dependent_count" style="text-align:center">
                         <option value='0'>0</option>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
@@ -96,8 +88,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Edu_level">최종학력</label>
-                    <select id="Edu_level" type="number">
+                    <label for="Edu_level">학력</label><br>
+                    <select id="Edu_level" style="text-align:center">
                         <option value='0'>Uneducated</option>
                         <option value='1'>College</option>
                         <option value='2'>Doctorate</option>
@@ -108,8 +100,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Income">소득 범위</label> 
-                    <select id="Income" type="number">
+                    <label for="Income">소득 범위</label><br>
+                    <select id="Income" style="text-align:center">
                         <option value='0'>Less than $40K</option>
                         <option value='1'>$40K - $60K</option>
                         <option value='2'>$60K - $80K</option>
@@ -118,29 +110,21 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" align="center">
                     <label for="Total_trant_Amt">총 거래 금액</label>
-                    <input id="Total_trant_Amt" style="margin-bottom:10px; text-align:center;" class="form-control" type="number" placeholder="0~$18000" required>
+                    <input id="Total_trant_Amt" style="margin-bottom:10px; text-align:center; width:300px;" class="form-control"  placeholder="0~$18000" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" align="center">
                     <label for="Month_on_book">거래 기간(month)</label>
-                    <input id="Month_on_book" style="margin-bottom:10px" class="form-control" type="number" required>
+                    <input id="Month_on_book" style="margin-bottom:10px; text-align:center; width:300px;" class="form-control"  required>
+                </div>    
+            
+                <div class="card-footer" style="text-align:center; background-color:lightblue;">
+                    <button type="submit" value="Submit" class="btn btn-secondary" data-toggle="modal" style="border-radius:2em" data-target="#exampleModal">Predict</button>
                 </div>
-
-                <button type="submit" value="Submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">전송</button>
             </form>
         </div>
-
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://m.media-amazon.com/images/I/51TO6RZdMGS._SL160_.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">고객 이탈 예측</h5>
-                <p class="card-text"></p>
-                
-            </div>
-        </div>
-
     </div>
     </div>
 {% comment %} 
