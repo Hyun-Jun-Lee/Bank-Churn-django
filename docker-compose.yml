@@ -13,7 +13,8 @@ services:
     image: django_test_image:1
     networks:
       - network
-    volumes:
+    secrets:
+      - SECRET_KEY
 
 
 
