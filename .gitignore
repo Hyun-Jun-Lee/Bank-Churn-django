@@ -2,3 +2,4 @@ churner/__pycache__
 db.sqlite3
 .idea
 .vscode
+.env
