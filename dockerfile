@@ -2,7 +2,7 @@ FROM python:3.8.12
 
 WORKDIR /home/
 
-RUN echo "test1"
+RUN echo "test12"
 
 RUN git clone https://github.com/Hyun-Jun-Lee/Bank-Churn-django
 
