@@ -31,3 +31,4 @@ threadpoolctl==2.2.0
 Werkzeug==2.0.1
 wincertstore==0.2
 zipp==3.5.0
+django-environ==0.8.1
