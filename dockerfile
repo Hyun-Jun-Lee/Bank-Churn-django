@@ -16,4 +16,4 @@ RUN pip install mysqlclient
 
 EXPOSE 8000
 
-CMD ["bash", "-c","python manage.py collectstatic --noinput --settings=bankchurnweb.settings && python manage.py migrate --settings=bankchurnweb.settings && gunicorn bankchurnweb.wsgi --env DJANGO_SETTINGS_MODULE=bankchurnweb.settings --bind 0.0.0.0:8000"]
+CMD ["bash", "-c","python manage.py migrate --settings=bankchurnweb.settings && gunicorn bankchurnweb.wsgi --env DJANGO_SETTINGS_MODULE=bankchurnweb.settings --bind 0.0.0.0:8000"]
