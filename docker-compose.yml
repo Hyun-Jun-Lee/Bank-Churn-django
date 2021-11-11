@@ -14,7 +14,7 @@ services:
     networks:
       - network
     secrets:
-      - SECRET_KEY
+      - DJANGO_SECRET_KEY
 
 
 
@@ -29,5 +29,5 @@ volumes:
   maria-database:
 
 secrets:
-  SECRET_KEY:
+  DJANGO_SECRET_KEY:
     external: true
